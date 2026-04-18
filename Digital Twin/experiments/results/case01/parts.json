@@ -1,0 +1,416 @@
+[
+  {
+    "part_id": 1,
+    "creation": 0,
+    "termination": 148,
+    "cycle_time": 148
+  },
+  {
+    "part_id": 2,
+    "creation": 0,
+    "termination": 138,
+    "cycle_time": 138
+  },
+  {
+    "part_id": 3,
+    "creation": 0,
+    "termination": 206,
+    "cycle_time": 206
+  },
+  {
+    "part_id": 4,
+    "creation": 0,
+    "termination": 176,
+    "cycle_time": 176
+  },
+  {
+    "part_id": 5,
+    "creation": 0,
+    "termination": 266,
+    "cycle_time": 266
+  },
+  {
+    "part_id": 6,
+    "creation": 0,
+    "termination": 216,
+    "cycle_time": 216
+  },
+  {
+    "part_id": 7,
+    "creation": 0,
+    "termination": 326,
+    "cycle_time": 326
+  },
+  {
+    "part_id": 8,
+    "creation": 0,
+    "termination": 252,
+    "cycle_time": 252
+  },
+  {
+    "part_id": 9,
+    "creation": 0,
+    "termination": 386,
+    "cycle_time": 386
+  },
+  {
+    "part_id": 10,
+    "creation": 0,
+    "termination": 290,
+    "cycle_time": 290
+  },
+  {
+    "part_id": 11,
+    "creation": 0,
+    "termination": 452,
+    "cycle_time": 452
+  },
+  {
+    "part_id": 12,
+    "creation": 0,
+    "termination": 336,
+    "cycle_time": 336
+  },
+  {
+    "part_id": 13,
+    "creation": 138,
+    "termination": 506,
+    "cycle_time": 368
+  },
+  {
+    "part_id": 14,
+    "creation": 148,
+    "termination": 366,
+    "cycle_time": 218
+  },
+  {
+    "part_id": 15,
+    "creation": 176,
+    "termination": 566,
+    "cycle_time": 390
+  },
+  {
+    "part_id": 16,
+    "creation": 206,
+    "termination": 404,
+    "cycle_time": 198
+  },
+  {
+    "part_id": 17,
+    "creation": 216,
+    "termination": 626,
+    "cycle_time": 410
+  },
+  {
+    "part_id": 18,
+    "creation": 252,
+    "termination": 442,
+    "cycle_time": 190
+  },
+  {
+    "part_id": 19,
+    "creation": 266,
+    "termination": 686,
+    "cycle_time": 420
+  },
+  {
+    "part_id": 20,
+    "creation": 290,
+    "termination": 480,
+    "cycle_time": 190
+  },
+  {
+    "part_id": 21,
+    "creation": 326,
+    "termination": 746,
+    "cycle_time": 420
+  },
+  {
+    "part_id": 22,
+    "creation": 336,
+    "termination": 518,
+    "cycle_time": 182
+  },
+  {
+    "part_id": 23,
+    "creation": 366,
+    "termination": 811,
+    "cycle_time": 445
+  },
+  {
+    "part_id": 24,
+    "creation": 386,
+    "termination": 556,
+    "cycle_time": 170
+  },
+  {
+    "part_id": 25,
+    "creation": 404,
+    "termination": 866,
+    "cycle_time": 462
+  },
+  {
+    "part_id": 26,
+    "creation": 442,
+    "termination": 594,
+    "cycle_time": 152
+  },
+  {
+    "part_id": 27,
+    "creation": 452,
+    "termination": 926,
+    "cycle_time": 474
+  },
+  {
+    "part_id": 28,
+    "creation": 480,
+    "termination": 636,
+    "cycle_time": 156
+  },
+  {
+    "part_id": 29,
+    "creation": 506,
+    "termination": 986,
+    "cycle_time": 480
+  },
+  {
+    "part_id": 30,
+    "creation": 518,
+    "termination": 670,
+    "cycle_time": 152
+  },
+  {
+    "part_id": 31,
+    "creation": 556,
+    "termination": 1046,
+    "cycle_time": 490
+  },
+  {
+    "part_id": 32,
+    "creation": 566,
+    "termination": 708,
+    "cycle_time": 142
+  },
+  {
+    "part_id": 33,
+    "creation": 594,
+    "termination": 1106,
+    "cycle_time": 512
+  },
+  {
+    "part_id": 34,
+    "creation": 626,
+    "termination": 757,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 35,
+    "creation": 636,
+    "termination": 1166,
+    "cycle_time": 530
+  },
+  {
+    "part_id": 36,
+    "creation": 670,
+    "termination": 801,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 37,
+    "creation": 686,
+    "termination": 1226,
+    "cycle_time": 540
+  },
+  {
+    "part_id": 38,
+    "creation": 708,
+    "termination": 839,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 39,
+    "creation": 746,
+    "termination": 1286,
+    "cycle_time": 540
+  },
+  {
+    "part_id": 40,
+    "creation": 757,
+    "termination": 894,
+    "cycle_time": 137
+  },
+  {
+    "part_id": 41,
+    "creation": 801,
+    "termination": 1346,
+    "cycle_time": 545
+  },
+  {
+    "part_id": 42,
+    "creation": 811,
+    "termination": 949,
+    "cycle_time": 138
+  },
+  {
+    "part_id": 43,
+    "creation": 839,
+    "termination": 1406,
+    "cycle_time": 567
+  },
+  {
+    "part_id": 44,
+    "creation": 866,
+    "termination": 997,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 45,
+    "creation": 894,
+    "termination": 1466,
+    "cycle_time": 572
+  },
+  {
+    "part_id": 46,
+    "creation": 926,
+    "termination": 1057,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 47,
+    "creation": 949,
+    "termination": 1526,
+    "cycle_time": 577
+  },
+  {
+    "part_id": 48,
+    "creation": 986,
+    "termination": 1117,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 49,
+    "creation": 997,
+    "termination": 1586,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 50,
+    "creation": 1046,
+    "termination": 1177,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 51,
+    "creation": 1057,
+    "termination": 1646,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 52,
+    "creation": 1106,
+    "termination": 1237,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 53,
+    "creation": 1117,
+    "termination": 1706,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 54,
+    "creation": 1166,
+    "termination": 1297,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 55,
+    "creation": 1177,
+    "termination": 1766,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 56,
+    "creation": 1226,
+    "termination": 1357,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 57,
+    "creation": 1237,
+    "termination": 1826,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 58,
+    "creation": 1286,
+    "termination": 1417,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 59,
+    "creation": 1297,
+    "termination": 1886,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 60,
+    "creation": 1346,
+    "termination": 1477,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 61,
+    "creation": 1357,
+    "termination": 1946,
+    "cycle_time": 589
+  },
+  {
+    "part_id": 62,
+    "creation": 1406,
+    "termination": 1537,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 64,
+    "creation": 1466,
+    "termination": 1597,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 66,
+    "creation": 1526,
+    "termination": 1657,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 68,
+    "creation": 1586,
+    "termination": 1717,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 70,
+    "creation": 1646,
+    "termination": 1777,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 72,
+    "creation": 1706,
+    "termination": 1837,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 74,
+    "creation": 1766,
+    "termination": 1897,
+    "cycle_time": 131
+  },
+  {
+    "part_id": 76,
+    "creation": 1826,
+    "termination": 1957,
+    "cycle_time": 131
+  }
+]

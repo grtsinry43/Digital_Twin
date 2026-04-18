@@ -1,5 +1,8 @@
 from IPython.display import Markdown, display
-from playsound import playsound
+try:
+    from playsound import playsound
+except ImportError:
+    playsound = None
 import os
 
 #--- Common Libraries

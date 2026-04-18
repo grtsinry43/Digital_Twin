@@ -1,0 +1,282 @@
+[
+  {
+    "t": 60,
+    "part_id": 4,
+    "rcts": {
+      "3": 142,
+      "4": 98
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 30.985915492957744
+  },
+  {
+    "t": 90,
+    "part_id": 5,
+    "rcts": {
+      "3": 202,
+      "4": 98
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 51.48514851485149
+  },
+  {
+    "t": 90,
+    "part_id": 6,
+    "rcts": {
+      "3": 202,
+      "4": 136
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 32.67326732673268
+  },
+  {
+    "t": 90,
+    "part_id": 7,
+    "rcts": {
+      "3": 202,
+      "4": 174
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 13.861386138613863
+  },
+  {
+    "t": 120,
+    "part_id": 8,
+    "rcts": {
+      "3": 202,
+      "4": 174
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 13.861386138613863
+  },
+  {
+    "t": 120,
+    "part_id": 9,
+    "rcts": {
+      "3": 202,
+      "4": 212
+    },
+    "chosen_conveyor_id": 3,
+    "gain_pct": 4.716981132075472
+  },
+  {
+    "t": 150,
+    "part_id": 10,
+    "rcts": {
+      "3": 202,
+      "4": 212
+    },
+    "chosen_conveyor_id": 3,
+    "gain_pct": 4.716981132075472
+  },
+  {
+    "t": 150,
+    "part_id": 11,
+    "rcts": {
+      "3": 262,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 19.083969465648856
+  },
+  {
+    "t": 150,
+    "part_id": 12,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 180,
+    "part_id": 13,
+    "rcts": {
+      "3": 202,
+      "4": 288
+    },
+    "chosen_conveyor_id": 3,
+    "gain_pct": 29.86111111111111
+  },
+  {
+    "t": 210,
+    "part_id": 14,
+    "rcts": {
+      "3": 262,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 19.083969465648856
+  },
+  {
+    "t": 210,
+    "part_id": 15,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 240,
+    "part_id": 16,
+    "rcts": {
+      "3": 202,
+      "4": 288
+    },
+    "chosen_conveyor_id": 3,
+    "gain_pct": 29.86111111111111
+  },
+  {
+    "t": 270,
+    "part_id": 17,
+    "rcts": {
+      "3": 262,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 19.083969465648856
+  },
+  {
+    "t": 300,
+    "part_id": 18,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 330,
+    "part_id": 20,
+    "rcts": {
+      "3": 202,
+      "4": 288
+    },
+    "chosen_conveyor_id": 3,
+    "gain_pct": 29.86111111111111
+  },
+  {
+    "t": 450,
+    "part_id": 25,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 630,
+    "part_id": 33,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 750,
+    "part_id": 38,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 870,
+    "part_id": 43,
+    "rcts": {
+      "3": 262,
+      "4": 250
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 4.580152671755725
+  },
+  {
+    "t": 1050,
+    "part_id": 51,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1170,
+    "part_id": 56,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1290,
+    "part_id": 61,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1350,
+    "part_id": 64,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1470,
+    "part_id": 69,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1590,
+    "part_id": 74,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1770,
+    "part_id": 82,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  },
+  {
+    "t": 1890,
+    "part_id": 87,
+    "rcts": {
+      "3": 322,
+      "4": 212
+    },
+    "chosen_conveyor_id": 4,
+    "gain_pct": 34.161490683229815
+  }
+]

@@ -1,2 +1,5 @@
 *.cpython-311.pyc
 Digital Twin/dtwinpylib/__pycache__
+
+.venv/
+.DS_Store
