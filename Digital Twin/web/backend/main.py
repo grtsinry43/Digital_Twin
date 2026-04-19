@@ -21,7 +21,12 @@ from pathlib import Path
 from typing import Any, Dict
 
 from fastapi import FastAPI, HTTPException, Query, WebSocket, WebSocketDisconnect
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
+
+from .simulate import BOUNDS, SimulateRequest, run_whatif
+from .interventions import append_intervention, list_interventions
+from .task_queue import create_task, get_task, list_tasks
 
 ROOT = Path(__file__).resolve().parents[2]  # "Digital Twin/"
 RESULTS = ROOT / "experiments" / "results"
@@ -94,6 +99,65 @@ def get_kpi():
 @app.get("/api/health")
 def health():
     return {"ok": True, "results_exist": RESULTS.exists()}
+
+
+# ---------------- What-if + 干预日志 ----------------
+
+@app.get("/api/simulate/bounds")
+def simulate_bounds():
+    return {"bounds": BOUNDS, "policies": ["alternated", "first"]}
+
+
+@app.post("/api/simulate")
+async def simulate(req: SimulateRequest):
+    # 同步：只跑 baseline（快速反馈用）
+    result = await run_in_threadpool(run_whatif, req)
+    return result
+
+
+@app.post("/api/simulate/async")
+def simulate_async(req: SimulateRequest):
+    # 异步：跑 baseline + RCT twin，对比孪生增益
+    # 先做参数校验（复用 run_whatif 的 clamp 逻辑）
+    from .simulate import _clamp, BOUNDS, ALLOWED_POLICIES
+    req.m3_time = _clamp(req.m3_time, BOUNDS["m3_time"], "m3_time")
+    req.m4_time = _clamp(req.m4_time, BOUNDS["m4_time"], "m4_time")
+    req.q3_capacity = _clamp(req.q3_capacity, BOUNDS["q3_capacity"], "q3_capacity")
+    req.q4_capacity = _clamp(req.q4_capacity, BOUNDS["q4_capacity"], "q4_capacity")
+    req.horizon = _clamp(req.horizon, BOUNDS["horizon"], "horizon")
+    if req.policy not in ALLOWED_POLICIES:
+        raise HTTPException(status_code=400, detail=f"policy 只能是 {sorted(ALLOWED_POLICIES)} 其一")
+
+    task_id = create_task(req.model_dump())
+    return {"task_id": task_id}
+
+
+@app.get("/api/simulate/status/{task_id}")
+def simulate_status(task_id: str):
+    t = get_task(task_id)
+    if not t:
+        raise HTTPException(status_code=404, detail="task_id 不存在")
+    return t
+
+
+@app.get("/api/simulate/tasks")
+def simulate_tasks(limit: int = Query(20, ge=1, le=100)):
+    return list_tasks(limit=limit)
+
+
+@app.get("/api/interventions")
+def get_interventions(limit: int = Query(200, ge=1, le=1000)):
+    return list_interventions(limit=limit)
+
+
+@app.post("/api/interventions")
+def post_intervention(payload: Dict[str, Any]):
+    # payload 要有 operator、params、kpi_before、kpi_after、note
+    required = ("operator", "params", "kpi_after")
+    for k in required:
+        if k not in payload:
+            raise HTTPException(status_code=400, detail=f"缺字段 {k}")
+    return append_intervention(payload)
 
 
 # ---------------- WebSocket replay ----------------

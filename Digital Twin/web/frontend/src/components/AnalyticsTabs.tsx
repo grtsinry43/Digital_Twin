@@ -6,6 +6,7 @@ import { UtilizationChart } from "./analytics/UtilizationChart";
 import { QueueLengthChart } from "./analytics/QueueLengthChart";
 import { PathTimeChart } from "./analytics/PathTimeChart";
 import { PredictionChart } from "./analytics/PredictionChart";
+import { CredibilityPanel } from "./analytics/CredibilityPanel";
 import { MqttLog } from "./MqttLog";
 
 interface Props {
@@ -27,6 +28,7 @@ export function AnalyticsTabs({ topology, evA, evB, tSim }: Props) {
         <Tab id="qlen" title="队列长度" panel={<Pane><QueueLengthChart a={a} b={b} queueIds={queueIds} /></Pane>} />
         <Tab id="path" title="路径耗时" panel={<Pane><PathTimeChart a={a} b={b} /></Pane>} />
         <Tab id="pred" title="预测 vs 实际" panel={<Pane><PredictionChart b={b} /></Pane>} />
+        <Tab id="cred" title="孪生可信度" panel={<Pane><CredibilityPanel analyticsB={b} eventsB={evB} /></Pane>} />
         <Tab id="log" title="MQTT 决策流" panel={<Pane><MqttLog eventsB={evB} tSim={tSim} /></Pane>} />
       </Tabs>
     </div>
