@@ -1,0 +1,210 @@
+{
+  "machines": [
+    {
+      "id": 1,
+      "process_time": 11,
+      "cluster": 1,
+      "successors": [
+        2
+      ],
+      "predecessors": [
+        5
+      ],
+      "x": 200,
+      "y": 300,
+      "label": "M1"
+    },
+    {
+      "id": 2,
+      "process_time": 17,
+      "cluster": 2,
+      "successors": [
+        3,
+        4
+      ],
+      "predecessors": [
+        1
+      ],
+      "x": 420,
+      "y": 300,
+      "label": "M2 · 分叉"
+    },
+    {
+      "id": 3,
+      "process_time": 60,
+      "cluster": 3,
+      "successors": [
+        5
+      ],
+      "predecessors": [
+        2
+      ],
+      "x": 660,
+      "y": 180,
+      "label": "M3 · 60s"
+    },
+    {
+      "id": 4,
+      "process_time": 38,
+      "cluster": 3,
+      "successors": [
+        5
+      ],
+      "predecessors": [
+        2
+      ],
+      "x": 660,
+      "y": 420,
+      "label": "M4 · 38s"
+    },
+    {
+      "id": 5,
+      "process_time": 10,
+      "cluster": 4,
+      "successors": [
+        1
+      ],
+      "predecessors": [
+        3,
+        4
+      ],
+      "x": 880,
+      "y": 300,
+      "label": "M5"
+    }
+  ],
+  "queues": [
+    {
+      "id": 1,
+      "from_machines": [
+        5
+      ],
+      "to_machine": 1,
+      "capacity": 12,
+      "transp_time": 9,
+      "x": 540,
+      "y": 110
+    },
+    {
+      "id": 2,
+      "from_machines": [
+        1
+      ],
+      "to_machine": 2,
+      "capacity": 10,
+      "transp_time": 11,
+      "x": 310,
+      "y": 300
+    },
+    {
+      "id": 3,
+      "from_machines": [
+        2
+      ],
+      "to_machine": 3,
+      "capacity": 10,
+      "transp_time": 23,
+      "x": 560,
+      "y": 225
+    },
+    {
+      "id": 4,
+      "from_machines": [
+        2
+      ],
+      "to_machine": 4,
+      "capacity": 10,
+      "transp_time": 20,
+      "x": 560,
+      "y": 375
+    },
+    {
+      "id": 5,
+      "from_machines": [
+        3,
+        4
+      ],
+      "to_machine": 5,
+      "capacity": 10,
+      "transp_time": 11,
+      "x": 775,
+      "y": 300
+    }
+  ],
+  "conveyors": [
+    {
+      "id": 1,
+      "from_machine": 5,
+      "to_queue_id": 1,
+      "to_machine": 1,
+      "transp_time": 9
+    },
+    {
+      "id": 2,
+      "from_machine": 1,
+      "to_queue_id": 2,
+      "to_machine": 2,
+      "transp_time": 11
+    },
+    {
+      "id": 3,
+      "from_machine": 2,
+      "to_queue_id": 3,
+      "to_machine": 3,
+      "transp_time": 23
+    },
+    {
+      "id": 4,
+      "from_machine": 2,
+      "to_queue_id": 4,
+      "to_machine": 4,
+      "transp_time": 20
+    },
+    {
+      "id": 5,
+      "from_machine": 3,
+      "to_queue_id": 5,
+      "to_machine": 5,
+      "transp_time": 11
+    },
+    {
+      "id": 5,
+      "from_machine": 4,
+      "to_queue_id": 5,
+      "to_machine": 5,
+      "transp_time": 6
+    }
+  ],
+  "branches": [
+    {
+      "machine_id": 2,
+      "out_queues": [
+        3,
+        4
+      ]
+    }
+  ],
+  "initial_by_queue": {
+    "1": [
+      "Part 1",
+      "Part 2",
+      "Part 3",
+      "Part 4",
+      "Part 5",
+      "Part 6",
+      "Part 7",
+      "Part 8",
+      "Part 9",
+      "Part 10",
+      "Part 11",
+      "Part 12"
+    ]
+  },
+  "machine_proc_time": {
+    "1": 11,
+    "2": 17,
+    "3": 60,
+    "4": 38,
+    "5": 10
+  }
+}

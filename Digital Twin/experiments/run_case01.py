@@ -12,6 +12,7 @@ sys.path.insert(0, ROOT)
 
 import matplotlib.pyplot as plt
 from dtwinpylib.dtwinpy.digital_model import Model
+from experiments.events import EventRecorder, install_recorder
 
 OUT_DIR = "experiments/results/case01"
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -29,6 +30,9 @@ model = Model(
     loop_type="closed",
 )
 model.model_translator()
+
+recorder = EventRecorder()
+install_recorder(model, recorder)
 
 print(f"Machines: {[m.get_name() for m in model.machines_vector]}")
 print(f"Branches: {[b.get_name() for b in model.branches]}")
@@ -49,6 +53,12 @@ records = [
 
 with open(f"{OUT_DIR}/parts.json", "w") as f:
     json.dump(records, f, indent=2)
+
+recorder.dump(f"{OUT_DIR}/events.json", meta={
+    "case": "case01",
+    "until": UNTIL,
+    "model_path": "models/5s_determ/initial.json",
+})
 
 avg_ct = sum(r["cycle_time"] for r in records) / len(records)
 th = len(records) / records[-1]["termination"]

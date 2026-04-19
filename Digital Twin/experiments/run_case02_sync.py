@@ -17,6 +17,7 @@ from experiments.twin_sync import (
     snapshot_wip, write_twin_json, build_twin_model,
     run_twin_for_rct, get_branch_options, parts_at_decision_position,
 )
+from experiments.events import EventRecorder, install_recorder
 
 OUT_DIR = "experiments/results/case02"
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -33,7 +34,7 @@ TWIN_UNTIL = 6000       # safety cap for twin sim
 BASE_JSON = "models/5s_determ/initial.json"
 
 
-def build_main_model():
+def build_main_model(recorder=None):
     m = Model(
         name="case02_main",
         model_path=BASE_JSON,
@@ -43,6 +44,8 @@ def build_main_model():
         loop_type="closed",
     )
     m.model_translator()
+    if recorder is not None:
+        install_recorder(m, recorder)
     # Start processes (manual so we can step env.run ourselves)
     m.Database.clear(m.event_table)
     m.Database.initialize(m.event_table)
@@ -83,7 +86,8 @@ def evaluate_path(main_model, deciding_part_id, forced_conveyor_id, other_decisi
 
 
 def run_case02():
-    main = build_main_model()
+    recorder = EventRecorder()
+    main = build_main_model(recorder=recorder)
     decisions = {}          # part_id -> [conveyor_ids] chosen
     decision_log = []       # list of {t, part_id, rct_per_path, chosen, gain}
     branch_options = get_branch_options(main)
@@ -105,6 +109,13 @@ def run_case02():
 
             conv_ids = all_conveyor_ids_by_branch[branch.id]
             print(f"\n[t={main.env.now}] Deciding for Part {pid} at {branch.get_name()} → options {conv_ids}")
+            recorder.emit({
+                "t": float(main.env.now),
+                "type": "decision_start",
+                "part_id": pid,
+                "branch_id": branch.id,
+                "options": list(conv_ids),
+            })
 
             rcts = {}
             for cid in conv_ids:
@@ -134,8 +145,28 @@ def run_case02():
                     "chosen_conveyor_id": best_cid,
                     "gain_pct": gain * 100,
                 })
+                recorder.emit({
+                    "t": float(main.env.now),
+                    "type": "decision_end",
+                    "part_id": pid,
+                    "branch_id": branch.id,
+                    "rcts": {str(k): v for k, v in rcts.items()},
+                    "chosen_conveyor_id": best_cid,
+                    "gain_pct": gain * 100,
+                    "applied": True,
+                })
             else:
                 print(f"    — gain {gain*100:.1f}% < threshold, keeping alternated default")
+                recorder.emit({
+                    "t": float(main.env.now),
+                    "type": "decision_end",
+                    "part_id": pid,
+                    "branch_id": branch.id,
+                    "rcts": {str(k): v for k, v in rcts.items()},
+                    "chosen_conveyor_id": best_cid,
+                    "gain_pct": gain * 100,
+                    "applied": False,
+                })
 
     # Collect results
     parts = sorted(main.terminator.get_all_items(), key=lambda p: p.get_id())
@@ -153,6 +184,13 @@ def run_case02():
         json.dump(records, f, indent=2)
     with open(f"{OUT_DIR}/decisions.json", "w") as f:
         json.dump(decision_log, f, indent=2)
+    recorder.dump(f"{OUT_DIR}/events.json", meta={
+        "case": "case02",
+        "until": UNTIL,
+        "decision_step": DECISION_STEP,
+        "rct_threshold": RCT_THRESHOLD,
+        "model_path": BASE_JSON,
+    })
 
     if records:
         avg_ct = sum(r["cycle_time"] for r in records) / len(records)
