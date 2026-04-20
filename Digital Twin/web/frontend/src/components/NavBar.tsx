@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 const TABS = [
   { to: "/dashboard", label: "看板大屏", sub: "REPLAY · 双 Case 对比" },
   { to: "/operator", label: "调度决策", sub: "WHAT-IF · 干预日志" },
+  { to: "/efficiency", label: "效率感知", sub: "DRIFT · 建议审批" },
 ];
 
 export function NavBar() {

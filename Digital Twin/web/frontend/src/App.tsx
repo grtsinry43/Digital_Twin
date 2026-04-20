@@ -6,6 +6,7 @@ import type { SimEvent, Topology } from "./types";
 import { NavBar } from "./components/NavBar";
 import { DashboardPage } from "./pages/DashboardPage";
 import { OperatorPage } from "./pages/OperatorPage";
+import { EfficiencyPage } from "./pages/EfficiencyPage";
 
 export default function App() {
   const [topology, setTopology] = useState<Topology | null>(null);
@@ -55,6 +56,7 @@ export default function App() {
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<DashboardPage topology={topology} evA={evA} evB={evB} />} />
         <Route path="/operator" element={<OperatorPage topology={topology} evA={evA} evB={evB} />} />
+        <Route path="/efficiency" element={<EfficiencyPage />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </div>

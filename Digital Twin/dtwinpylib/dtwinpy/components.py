@@ -331,11 +331,11 @@ class Machine():
                         #-- generate the process time following the given distribution
                         if distribution_name == 'norm':
                             #current_process_time = norm.rvs(self.process_time[1], self.process_time[2], size= 1) - self.worked_time
-                            current_process_time_gen = norm.rvs(self.process_time[1], self.process_time[2], size= 1)
+                            current_process_time_gen = float(norm.rvs(self.process_time[1], self.process_time[2]))
 
                         elif distribution_name == 'expon':
                             #current_process_time_gen = norm.rvs(self.process_time[1], self.process_time[2], size= 1) - self.worked_time
-                            current_process_time_gen = norm.rvs(self.process_time[1], self.process_time[2], size= 1) 
+                            current_process_time_gen = float(norm.rvs(self.process_time[1], self.process_time[2]))
 
                     else:
                         #current_process_time_gen = self.process_time - self.worked_time

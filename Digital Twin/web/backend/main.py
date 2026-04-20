@@ -27,11 +27,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from .simulate import BOUNDS, SimulateRequest, run_whatif
 from .interventions import append_intervention, list_interventions
 from .task_queue import create_task, get_task, list_tasks
+from .efficiency import analyze as efficiency_analyze, build_suggestions as efficiency_build_suggestions
+from . import suggestions as suggestion_store
+from . import efficiency_auto
 
 ROOT = Path(__file__).resolve().parents[2]  # "Digital Twin/"
 RESULTS = ROOT / "experiments" / "results"
 
 app = FastAPI(title="Digital Twin Replay Server")
+
+
+@app.on_event("startup")
+def _boot():
+    efficiency_auto.start_worker()
 
 app.add_middleware(
     CORSMiddleware,
@@ -158,6 +166,87 @@ def post_intervention(payload: Dict[str, Any]):
         if k not in payload:
             raise HTTPException(status_code=400, detail=f"缺字段 {k}")
     return append_intervention(payload)
+
+
+# ---------------- Efficiency（机器效率变化感知） ----------------
+
+@app.get("/api/efficiency/status")
+def efficiency_status(case: str = Query("02")):
+    status = efficiency_analyze(case)
+    status["candidate_suggestions"] = efficiency_build_suggestions(status)
+    return status
+
+
+@app.post("/api/efficiency/scan")
+def efficiency_scan(case: str = Query("02")):
+    return suggestion_store.scan_and_enqueue(case)
+
+
+@app.get("/api/efficiency/suggestions")
+def efficiency_suggestions(status: str | None = Query(None), limit: int = Query(200, ge=1, le=1000)):
+    return suggestion_store.list_suggestions(status_filter=status, limit=limit)
+
+
+@app.post("/api/efficiency/suggestions/{sid}/decide")
+def efficiency_decide(sid: int, payload: Dict[str, Any]):
+    action = payload.get("action")
+    if action not in {"approve", "reject", "modify", "ignore"}:
+        raise HTTPException(status_code=400, detail="action 只能是 approve/reject/modify/ignore")
+    operator = str(payload.get("operator", "")).strip()
+    if not operator:
+        raise HTTPException(status_code=400, detail="operator 必填")
+    try:
+        return suggestion_store.decide(
+            record_id=sid,
+            action=action,
+            operator=operator,
+            note=str(payload.get("note", "")),
+            new_to=payload.get("new_to"),
+        )
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"建议 #{sid} 不存在")
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+# ---------------- Efficiency · Auto 模式 ----------------
+
+@app.get("/api/efficiency/auto")
+def efficiency_auto_state():
+    return efficiency_auto.state()
+
+
+@app.post("/api/efficiency/auto")
+def efficiency_auto_update(patch: Dict[str, Any]):
+    # 简单校验
+    if "max_auto_pct" in patch:
+        try:
+            v = float(patch["max_auto_pct"])
+            if not (1 <= v <= 100):
+                raise ValueError
+        except (TypeError, ValueError):
+            raise HTTPException(status_code=400, detail="max_auto_pct 需在 1–100 之间")
+    if "cooldown_s" in patch:
+        try:
+            v = int(patch["cooldown_s"])
+            if not (30 <= v <= 86400):
+                raise ValueError
+        except (TypeError, ValueError):
+            raise HTTPException(status_code=400, detail="cooldown_s 需在 30–86400 之间")
+    if "mode" in patch and patch["mode"] not in {"manual", "auto"}:
+        raise HTTPException(status_code=400, detail="mode 只能是 manual 或 auto")
+    cfg = efficiency_auto.save_config(patch)
+    return cfg
+
+
+@app.post("/api/efficiency/auto/tick")
+def efficiency_auto_tick():
+    return efficiency_auto.tick()
+
+
+@app.post("/api/efficiency/auto/kill")
+def efficiency_auto_kill():
+    return efficiency_auto.kill_switch()
 
 
 # ---------------- WebSocket replay ----------------
